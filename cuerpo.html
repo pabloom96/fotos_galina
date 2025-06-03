@@ -1,27 +1,806 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rafting Costa Rica 2025</title>
   <style>
-    body { background: #f5f5f5; font-family: Arial, sans-serif; margin: 20px; }
-    .thumb { display: inline-block; margin: 10px; }
-    .thumb img { width: 200px; height: auto; border: 1px solid #ccc; }
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Fondo y tipografía general */
+    body {
+      background: #1e1e1e;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.4;
+      padding: 20px;
+    }
+
+    /* Contenedor del título */
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      display: inline-block;
+    }
+
+    header h1::after {
+      content: '';
+      width: 100%;
+      height: 4px;
+      background: #e91e63;
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      border-radius: 2px;
+    }
+
+    /* Contenedor de la galería */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    /* Cada tarjeta de foto */
+    .photo-card {
+      background: #2a2a2a;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    .photo-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Overlay al pasar el mouse */
+    .photo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+      transition: background 0.3s ease;
+    }
+
+    .photo-card:hover::before {
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    /* Pie de página con créditos */
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    footer a {
+      color: #e91e63;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <h1>Galería de Fotos</h1>
-  <!-- Repite este bloque para cada foto -->
-  <div class="thumb">
-    <a href="https://www.dropbox.com/scl/fi/n4ycs73i9bh9uaiqfj7ls/IMG_0146.JPG?rlkey=m4tbrjzmuecu1z6xvyft77mzn&st=9wvfzix6&dl=0" target="_blank">
-      <img src="https://www.dropbox.com/scl/fi/n4ycs73i9bh9uaiqfj7ls/IMG_0146.JPG?rlkey=m4tbrjzmuecu1z6xvyft77mzn&st=9wvfzix6&dl=0" alt="Foto 1">
-    </a>
+
+  <header>
+    <h1>Galería Perrísima</h1>
+  </header>
+
+  <div class="gallery">
+    <!-- A continuación hay 96 tarjetas (photo-card). 
+         Cada una contiene un <a> con <img> cuyo atributo src="" debes reemplazar 
+         con tu URL raw de Dropbox (debe terminar en ?raw=1). 
+         Ejemplo de URL Dropbox raw:
+         https://www.dropbox.com/s/ABCDE12345/mi-foto.jpg?raw=1 
+    -->
+
+    <!-- Foto 1 -->
+    <div class="photo-card">
+      <a href="https://www.dropbox.com/scl/fi/4d4qclfzsr7pqmcp6vmv1/IMG_0147.JPG?rlkey=2yhw5qpqq740zbetxtll4q1zw&st=6137mcgg?raw=1"_blank">
+        <img src="https://www.dropbox.com/scl/fi/4d4qclfzsr7pqmcp6vmv1/IMG_0147.JPG?rlkey=2yhw5qpqq740zbetxtll4q1zw&st=6137mcgg?raw=1" alt="Foto 1" />
+      </a>
+    </div>
+
+    <!-- Foto 2 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO2?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO2?raw=1" alt="Foto 2" />
+      </a>
+    </div>
+
+    <!-- Foto 3 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO3?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO3?raw=1" alt="Foto 3" />
+      </a>
+    </div>
+
+    <!-- Foto 4 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO4?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO4?raw=1" alt="Foto 4" />
+      </a>
+    </div>
+
+    <!-- Foto 5 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO5?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO5?raw=1" alt="Foto 5" />
+      </a>
+    </div>
+
+    <!-- Foto 6 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO6?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO6?raw=1" alt="Foto 6" />
+      </a>
+    </div>
+
+    <!-- Foto 7 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO7?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO7?raw=1" alt="Foto 7" />
+      </a>
+    </div>
+
+    <!-- Foto 8 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO8?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO8?raw=1" alt="Foto 8" />
+      </a>
+    </div>
+
+    <!-- Foto 9 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO9?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO9?raw=1" alt="Foto 9" />
+      </a>
+    </div>
+
+    <!-- Foto 10 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO10?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO10?raw=1" alt="Foto 10" />
+      </a>
+    </div>
+
+    <!-- Foto 11 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO11?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO11?raw=1" alt="Foto 11" />
+      </a>
+    </div>
+
+    <!-- Foto 12 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO12?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO12?raw=1" alt="Foto 12" />
+      </a>
+    </div>
+
+    <!-- Foto 13 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO13?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO13?raw=1" alt="Foto 13" />
+      </a>
+    </div>
+
+    <!-- Foto 14 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO14?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO14?raw=1" alt="Foto 14" />
+      </a>
+    </div>
+
+    <!-- Foto 15 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO15?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO15?raw=1" alt="Foto 15" />
+      </a>
+    </div>
+
+    <!-- Foto 16 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO16?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO16?raw=1" alt="Foto 16" />
+      </a>
+    </div>
+
+    <!-- Foto 17 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO17?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO17?raw=1" alt="Foto 17" />
+      </a>
+    </div>
+
+    <!-- Foto 18 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO18?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO18?raw=1" alt="Foto 18" />
+      </a>
+    </div>
+
+    <!-- Foto 19 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO19?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO19?raw=1" alt="Foto 19" />
+      </a>
+    </div>
+
+    <!-- Foto 20 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO20?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO20?raw=1" alt="Foto 20" />
+      </a>
+    </div>
+
+    <!-- Foto 21 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO21?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO21?raw=1" alt="Foto 21" />
+      </a>
+    </div>
+
+    <!-- Foto 22 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO22?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO22?raw=1" alt="Foto 22" />
+      </a>
+    </div>
+
+    <!-- Foto 23 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO23?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO23?raw=1" alt="Foto 23" />
+      </a>
+    </div>
+
+    <!-- Foto 24 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO24?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO24?raw=1" alt="Foto 24" />
+      </a>
+    </div>
+
+    <!-- Foto 25 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO25?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO25?raw=1" alt="Foto 25" />
+      </a>
+    </div>
+
+    <!-- Foto 26 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO26?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO26?raw=1" alt="Foto 26" />
+      </a>
+    </div>
+
+    <!-- Foto 27 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO27?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO27?raw=1" alt="Foto 27" />
+      </a>
+    </div>
+
+    <!-- Foto 28 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO28?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO28?raw=1" alt="Foto 28" />
+      </a>
+    </div>
+
+    <!-- Foto 29 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO29?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO29?raw=1" alt="Foto 29" />
+      </a>
+    </div>
+
+    <!-- Foto 30 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO30?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO30?raw=1" alt="Foto 30" />
+      </a>
+    </div>
+
+    <!-- Foto 31 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO31?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO31?raw=1" alt="Foto 31" />
+      </a>
+    </div>
+
+    <!-- Foto 32 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO32?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO32?raw=1" alt="Foto 32" />
+      </a>
+    </div>
+
+    <!-- Foto 33 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO33?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO33?raw=1" alt="Foto 33" />
+      </a>
+    </div>
+
+    <!-- Foto 34 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO34?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO34?raw=1" alt="Foto 34" />
+      </a>
+    </div>
+
+    <!-- Foto 35 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO35?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO35?raw=1" alt="Foto 35" />
+      </a>
+    </div>
+
+    <!-- Foto 36 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO36?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO36?raw=1" alt="Foto 36" />
+      </a>
+    </div>
+
+    <!-- Foto 37 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO37?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO37?raw=1" alt="Foto 37" />
+      </a>
+    </div>
+
+    <!-- Foto 38 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO38?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO38?raw=1" alt="Foto 38" />
+      </a>
+    </div>
+
+    <!-- Foto 39 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO39?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO39?raw=1" alt="Foto 39" />
+      </a>
+    </div>
+
+    <!-- Foto 40 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO40?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO40?raw=1" alt="Foto 40" />
+      </a>
+    </div>
+
+    <!-- Foto 41 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO41?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO41?raw=1" alt="Foto 41" />
+      </a>
+    </div>
+
+    <!-- Foto 42 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO42?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO42?raw=1" alt="Foto 42" />
+      </a>
+    </div>
+
+    <!-- Foto 43 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO43?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO43?raw=1" alt="Foto 43" />
+      </a>
+    </div>
+
+    <!-- Foto 44 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO44?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO44?raw=1" alt="Foto 44" />
+      </a>
+    </div>
+
+    <!-- Foto 45 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO45?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO45?raw=1" alt="Foto 45" />
+      </a>
+    </div>
+
+    <!-- Foto 46 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO46?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO46?raw=1" alt="Foto 46" />
+      </a>
+    </div>
+
+    <!-- Foto 47 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO47?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO47?raw=1" alt="Foto 47" />
+      </a>
+    </div>
+
+    <!-- Foto 48 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO48?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO48?raw=1" alt="Foto 48" />
+      </a>
+    </div>
+
+    <!-- Foto 49 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO49?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO49?raw=1" alt="Foto 49" />
+      </a>
+    </div>
+
+    <!-- Foto 50 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO50?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO50?raw=1" alt="Foto 50" />
+      </a>
+    </div>
+
+    <!-- Foto 51 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO51?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO51?raw=1" alt="Foto 51" />
+      </a>
+    </div>
+
+    <!-- Foto 52 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO52?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO52?raw=1" alt="Foto 52" />
+      </a>
+    </div>
+
+    <!-- Foto 53 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO53?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO53?raw=1" alt="Foto 53" />
+      </a>
+    </div>
+
+    <!-- Foto 54 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO54?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO54?raw=1" alt="Foto 54" />
+      </a>
+    </div>
+
+    <!-- Foto 55 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO55?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO55?raw=1" alt="Foto 55" />
+      </a>
+    </div>
+
+    <!-- Foto 56 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO56?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO56?raw=1" alt="Foto 56" />
+      </a>
+    </div>
+
+    <!-- Foto 57 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO57?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO57?raw=1" alt="Foto 57" />
+      </a>
+    </div>
+
+    <!-- Foto 58 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO58?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO58?raw=1" alt="Foto 58" />
+      </a>
+    </div>
+
+    <!-- Foto 59 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO59?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO59?raw=1" alt="Foto 59" />
+      </a>
+    </div>
+
+    <!-- Foto 60 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO60?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO60?raw=1" alt="Foto 60" />
+      </a>
+    </div>
+
+    <!-- Foto 61 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO61?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO61?raw=1" alt="Foto 61" />
+      </a>
+    </div>
+
+    <!-- Foto 62 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO62?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO62?raw=1" alt="Foto 62" />
+      </a>
+    </div>
+
+    <!-- Foto 63 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO63?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO63?raw=1" alt="Foto 63" />
+      </a>
+    </div>
+
+    <!-- Foto 64 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO64?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO64?raw=1" alt="Foto 64" />
+      </a>
+    </div>
+
+    <!-- Foto 65 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO65?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO65?raw=1" alt="Foto 65" />
+      </a>
+    </div>
+
+    <!-- Foto 66 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO66?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO66?raw=1" alt="Foto 66" />
+      </a>
+    </div>
+
+    <!-- Foto 67 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO67?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO67?raw=1" alt="Foto 67" />
+      </a>
+    </div>
+
+    <!-- Foto 68 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO68?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO68?raw=1" alt="Foto 68" />
+      </a>
+    </div>
+
+    <!-- Foto 69 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO69?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO69?raw=1" alt="Foto 69" />
+      </a>
+    </div>
+
+    <!-- Foto 70 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO70?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO70?raw=1" alt="Foto 70" />
+      </a>
+    </div>
+
+    <!-- Foto 71 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO71?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO71?raw=1" alt="Foto 71" />
+      </a>
+    </div>
+
+    <!-- Foto 72 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO72?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO72?raw=1" alt="Foto 72" />
+      </a>
+    </div>
+
+    <!-- Foto 73 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO73?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO73?raw=1" alt="Foto 73" />
+      </a>
+    </div>
+
+    <!-- Foto 74 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO74?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO74?raw=1" alt="Foto 74" />
+      </a>
+    </div>
+
+    <!-- Foto 75 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO75?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO75?raw=1" alt="Foto 75" />
+      </a>
+    </div>
+
+    <!-- Foto 76 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO76?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO76?raw=1" alt="Foto 76" />
+      </a>
+    </div>
+
+    <!-- Foto 77 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO77?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO77?raw=1" alt="Foto 77" />
+      </a>
+    </div>
+
+    <!-- Foto 78 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO78?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO78?raw=1" alt="Foto 78" />
+      </a>
+    </div>
+
+    <!-- Foto 79 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO79?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO79?raw=1" alt="Foto 79" />
+      </a>
+    </div>
+
+    <!-- Foto 80 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO80?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO80?raw=1" alt="Foto 80" />
+      </a>
+    </div>
+
+    <!-- Foto 81 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO81?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO81?raw=1" alt="Foto 81" />
+      </a>
+    </div>
+
+    <!-- Foto 82 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO82?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO82?raw=1" alt="Foto 82" />
+      </a>
+    </div>
+
+    <!-- Foto 83 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO83?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO83?raw=1" alt="Foto 83" />
+      </a>
+    </div>
+
+    <!-- Foto 84 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO84?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO84?raw=1" alt="Foto 84" />
+      </a>
+    </div>
+
+    <!-- Foto 85 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO85?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO85?raw=1" alt="Foto 85" />
+      </a>
+    </div>
+
+    <!-- Foto 86 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO86?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO86?raw=1" alt="Foto 86" />
+      </a>
+    </div>
+
+    <!-- Foto 87 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO87?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO87?raw=1" alt="Foto 87" />
+      </a>
+    </div>
+
+    <!-- Foto 88 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO88?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO88?raw=1" alt="Foto 88" />
+      </a>
+    </div>
+
+    <!-- Foto 89 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO89?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO89?raw=1" alt="Foto 89" />
+      </a>
+    </div>
+
+    <!-- Foto 90 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO90?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO90?raw=1" alt="Foto 90" />
+      </a>
+    </div>
+
+    <!-- Foto 91 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO91?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO91?raw=1" alt="Foto 91" />
+      </a>
+    </div>
+
+    <!-- Foto 92 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO92?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO92?raw=1" alt="Foto 92" />
+      </a>
+    </div>
+
+    <!-- Foto 93 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO93?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO93?raw=1" alt="Foto 93" />
+      </a>
+    </div>
+
+    <!-- Foto 94 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO94?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO94?raw=1" alt="Foto 94" />
+      </a>
+    </div>
+
+    <!-- Foto 95 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO95?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO95?raw=1" alt="Foto 95" />
+      </a>
+    </div>
+
+    <!-- Foto 96 -->
+    <div class="photo-card">
+      <a href="TU_URL_DROPBOX_FOTO96?raw=1" target="_blank">
+        <img src="TU_URL_DROPBOX_FOTO96?raw=1" alt="Foto 96" />
+      </a>
+    </div>
+
+    <!-- Fin de las 96 fotos -->
   </div>
-  <div class="thumb">
-    <a href="https://www.dropbox.com/scl/fi/717ko8u4d3wl7armrern0/IMG_0152.JPG?rlkey=ci3yfxrfbm4tczl7gzsdk5i1s&st=mdymcsbw&dl=0" target="_blank">
-      <img src="https://www.dropbox.com/scl/fi/717ko8u4d3wl7armrern0/IMG_0152.JPG?rlkey=ci3yfxrfbm4tczl7gzsdk5i1s&st=mdymcsbw&dl=0" alt="Foto 2">
-    </a>
-  </div>
-  <!-- … -->
+
+  <footer>
+    <p>Desarrollado con ❤ para tu Galería Perrísima</p>
+  </footer>
+
 </body>
 </html>
