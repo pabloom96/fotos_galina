@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rafting Costa Rica 2025</title>
+  <title>Rafting Costa Rica 2025 Dr. Galina</title>
   <style>
     /* Reset básico */
     * {
@@ -26,7 +26,6 @@
       text-align: center;
       margin-bottom: 30px;
     }
-
     header h1 {
       font-size: 3rem;
       text-transform: uppercase;
@@ -34,7 +33,6 @@
       position: relative;
       display: inline-block;
     }
-
     header h1::after {
       content: '';
       width: 100%;
@@ -62,12 +60,10 @@
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .photo-card:hover {
       transform: translateY(-5px) scale(1.02);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
     }
-
     .photo-card img {
       display: block;
       width: 100%;
@@ -75,8 +71,6 @@
       object-fit: cover;
       transition: opacity 0.3s ease;
     }
-
-    /* Overlay al pasar el mouse */
     .photo-card::before {
       content: '';
       position: absolute;
@@ -87,19 +81,50 @@
       background: rgba(0, 0, 0, 0);
       transition: background 0.3s ease;
     }
-
     .photo-card:hover::before {
       background: rgba(0, 0, 0, 0.25);
     }
 
-    /* Pie de página con créditos */
+    /* Lightbox (overlay con imagen ampliada) */
+    #lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999; /* Por encima de todo */
+    }
+    #lightbox-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 4px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    }
+    /* Botón de cerrar (esquina superior derecha) */
+    #lightbox-overlay .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    #lightbox-overlay .close-btn:hover {
+      color: #e91e63;
+    }
+
+    /* Pie de página */
     footer {
       margin-top: 40px;
       text-align: center;
       font-size: 0.9rem;
       color: #aaa;
     }
-
     footer a {
       color: #e91e63;
       text-decoration: none;
@@ -116,690 +141,534 @@
   </header>
 
   <div class="gallery">
-    <!-- A continuación hay 96 tarjetas (photo-card). 
-         Cada una contiene un <a> con <img> cuyo atributo src="" debes reemplazar 
-         con tu URL raw de Dropbox (debe terminar en ?raw=1). 
-         Ejemplo de URL Dropbox raw:
-         https://www.dropbox.com/s/ABCDE12345/mi-foto.jpg?raw=1 
-    -->
+    <!-- Cada .photo-card contiene “data-full” con la URL raw de Dropbox, y un <img> con la misma URL -->
 
     <!-- Foto 1 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/4d4qclfzsr7pqmcp6vmv1/IMG_0147.JPG?rlkey=2yhw5qpqq740zbetxtll4q1zw&st=6137mcgg&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/4d4qclfzsr7pqmcp6vmv1/IMG_0147.JPG?rlkey=2yhw5qpqq740zbetxtll4q1zw&st=6137mcgg&raw=1" alt="Foto 1" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/4d4qclfzsr7pqmcp6vmv1/IMG_0147.JPG?rlkey=2yhw5qpqq740zbetxtll4q1zw&st=6137mcgg&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/4d4qclfzsr7pqmcp6vmv1/IMG_0147.JPG?rlkey=2yhw5qpqq740zbetxtll4q1zw&st=6137mcgg&raw=1" alt="Foto 1" />
     </div>
 
     <!-- Foto 2 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/717ko8u4d3wl7armrern0/IMG_0152.JPG?rlkey=ci3yfxrfbm4tczl7gzsdk5i1s&st=jwyntpsj&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/717ko8u4d3wl7armrern0/IMG_0152.JPG?rlkey=ci3yfxrfbm4tczl7gzsdk5i1s&st=jwyntpsj&raw=1" alt="Foto 2" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/717ko8u4d3wl7armrern0/IMG_0152.JPG?rlkey=ci3yfxrfbm4tczl7gzsdk5i1s&st=jwyntpsj&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/717ko8u4d3wl7armrern0/IMG_0152.JPG?rlkey=ci3yfxrfbm4tczl7gzsdk5i1s&st=jwyntpsj&raw=1" alt="Foto 2" />
     </div>
 
     <!-- Foto 3 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/717ko8u4d3wl7armrern0/IMG_0152.JPG?rlkey=ci3yfxrfbm4tczl7gzsdk5i1s&st=v57h8om0&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/717ko8u4d3wl7armrern0/IMG_0152.JPG?rlkey=ci3yfxrfbm4tczl7gzsdk5i1s&st=v57h8om0&raw=1" alt="Foto 3" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/717ko8u4d3wl7armrern0/IMG_0152.JPG?rlkey=ci3yfxrfbm4tczl7gzsdk5i1s&st=v57h8om0&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/717ko8u4d3wl7armrern0/IMG_0152.JPG?rlkey=ci3yfxrfbm4tczl7gzsdk5i1s&st=v57h8om0&raw=1" alt="Foto 3" />
     </div>
 
     <!-- Foto 4 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/by5swhsembt3fdl6iw7yr/IMG_0150.JPG?rlkey=1ww29c7apwxmlas9f0yv795mv&st=7ey20j7i&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/by5swhsembt3fdl6iw7yr/IMG_0150.JPG?rlkey=1ww29c7apwxmlas9f0yv795mv&st=7ey20j7i&raw=1" alt="Foto 4" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/by5swhsembt3fdl6iw7yr/IMG_0150.JPG?rlkey=1ww29c7apwxmlas9f0yv795mv&st=7ey20j7i&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/by5swhsembt3fdl6iw7yr/IMG_0150.JPG?rlkey=1ww29c7apwxmlas9f0yv795mv&st=7ey20j7i&raw=1" alt="Foto 4" />
     </div>
 
     <!-- Foto 5 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/imj3zc7s2uslfcayu4jap/IMG_0145.JPG?rlkey=r9i4w3npj1jd1qbpiififek0r&st=j7js745a&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/imj3zc7s2uslfcayu4jap/IMG_0145.JPG?rlkey=r9i4w3npj1jd1qbpiififek0r&st=j7js745a&raw=1" alt="Foto 5" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/imj3zc7s2uslfcayu4jap/IMG_0145.JPG?rlkey=r9i4w3npj1jd1qbpiififek0r&st=j7js745a&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/imj3zc7s2uslfcayu4jap/IMG_0145.JPG?rlkey=r9i4w3npj1jd1qbpiififek0r&st=j7js745a&raw=1" alt="Foto 5" />
     </div>
 
     <!-- Foto 6 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/itu8r4t9tikuk5r7uwooa/IMG_0151.JPG?rlkey=ogb6pbjy3w0qs3xr8qq79eel4&st=2vmpway8&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/itu8r4t9tikuk5r7uwooa/IMG_0151.JPG?rlkey=ogb6pbjy3w0qs3xr8qq79eel4&st=2vmpway8&raw=1" alt="Foto 6" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/itu8r4t9tikuk5r7uwooa/IMG_0151.JPG?rlkey=ogb6pbjy3w0qs3xr8qq79eel4&st=2vmpway8&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/itu8r4t9tikuk5r7uwooa/IMG_0151.JPG?rlkey=ogb6pbjy3w0qs3xr8qq79eel4&st=2vmpway8&raw=1" alt="Foto 6" />
     </div>
 
     <!-- Foto 7 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/o1bkabl8nhdb342w8j53f/IMG_0144.JPG?rlkey=x560drqtiut0g83sz8muunhqk&st=lf8137iz&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/o1bkabl8nhdb342w8j53f/IMG_0144.JPG?rlkey=x560drqtiut0g83sz8muunhqk&st=lf8137iz&raw=1" alt="Foto 7" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/o1bkabl8nhdb342w8j53f/IMG_0144.JPG?rlkey=x560drqtiut0g83sz8muunhqk&st=lf8137iz&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/o1bkabl8nhdb342w8j53f/IMG_0144.JPG?rlkey=x560drqtiut0g83sz8muunhqk&st=lf8137iz&raw=1" alt="Foto 7" />
     </div>
 
     <!-- Foto 8 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/43l531ujn440j31dvrp7d/IMG_0149.JPG?rlkey=w57bs83lyeqshareofazumds8&st=64aau5hs&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/43l531ujn440j31dvrp7d/IMG_0149.JPG?rlkey=w57bs83lyeqshareofazumds8&st=64aau5hs&raw=1" alt="Foto 8" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/43l531ujn440j31dvrp7d/IMG_0149.JPG?rlkey=w57bs83lyeqshareofazumds8&st=64aau5hs&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/43l531ujn440j31dvrp7d/IMG_0149.JPG?rlkey=w57bs83lyeqshareofazumds8&st=64aau5hs&raw=1" alt="Foto 8" />
     </div>
 
     <!-- Foto 9 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/vita6vy2h8xrququvv8nn/IMG_0155.JPG?rlkey=nslc0v3lt5520tprvwfrbsokr&st=0knc7tqr&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/vita6vy2h8xrququvv8nn/IMG_0155.JPG?rlkey=nslc0v3lt5520tprvwfrbsokr&st=0knc7tqr&raw=1" alt="Foto 9" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/vita6vy2h8xrququvv8nn/IMG_0155.JPG?rlkey=nslc0v3lt5520tprvwfrbsokr&st=0knc7tqr&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/vita6vy2h8xrququvv8nn/IMG_0155.JPG?rlkey=nslc0v3lt5520tprvwfrbsokr&st=0knc7tqr&raw=1" alt="Foto 9" />
     </div>
 
     <!-- Foto 10 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/pwn92w0jo49oaikn7wqj4/IMG_0140.JPG?rlkey=dgj3zcr2b2c8idefynmjq34zt&st=r81p79jq&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/pwn92w0jo49oaikn7wqj4/IMG_0140.JPG?rlkey=dgj3zcr2b2c8idefynmjq34zt&st=r81p79jq&raw=1" alt="Foto 10" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/pwn92w0jo49oaikn7wqj4/IMG_0140.JPG?rlkey=dgj3zcr2b2c8idefynmjq34zt&st=r81p79jq&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/pwn92w0jo49oaikn7wqj4/IMG_0140.JPG?rlkey=dgj3zcr2b2c8idefynmjq34zt&st=r81p79jq&raw=1" alt="Foto 10" />
     </div>
 
     <!-- Foto 11 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/b9jqqkw5sdr0v8s52lihz/IMG_0139.JPG?rlkey=ebwmi5hur57aas9r6168wzf13&st=488qq7kj&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/b9jqqkw5sdr0v8s52lihz/IMG_0139.JPG?rlkey=ebwmi5hur57aas9r6168wzf13&st=488qq7kj&raw=1" alt="Foto 11" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/b9jqqkw5sdr0v8s52lihz/IMG_0139.JPG?rlkey=ebwmi5hur57aas9r6168wzf13&st=488qq7kj&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/b9jqqkw5sdr0v8s52lihz/IMG_0139.JPG?rlkey=ebwmi5hur57aas9r6168wzf13&st=488qq7kj&raw=1" alt="Foto 11" />
     </div>
 
     <!-- Foto 12 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/wx7wj18rrpab9r057tf3d/IMG_0138.JPG?rlkey=374vivtvdn3j1zz9gnep90wxb&st=hvr7myr0&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/wx7wj18rrpab9r057tf3d/IMG_0138.JPG?rlkey=374vivtvdn3j1zz9gnep90wxb&st=hvr7myr0&raw=1" alt="Foto 12" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/wx7wj18rrpab9r057tf3d/IMG_0138.JPG?rlkey=374vivtvdn3j1zz9gnep90wxb&st=hvr7myr0&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/wx7wj18rrpab9r057tf3d/IMG_0138.JPG?rlkey=374vivtvdn3j1zz9gnep90wxb&st=hvr7myr0&raw=1" alt="Foto 12" />
     </div>
 
     <!-- Foto 13 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/0p91ayjv4xyqmdyqlxuvl/IMG_0154.JPG?rlkey=culfhw9l0oplz46q9bj5si2qo&st=o3g4x2ci&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/0p91ayjv4xyqmdyqlxuvl/IMG_0154.JPG?rlkey=culfhw9l0oplz46q9bj5si2qo&st=o3g4x2ci&raw=1" alt="Foto 13" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/0p91ayjv4xyqmdyqlxuvl/IMG_0154.JPG?rlkey=culfhw9l0oplz46q9bj5si2qo&st=o3g4x2ci&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/0p91ayjv4xyqmdyqlxuvl/IMG_0154.JPG?rlkey=culfhw9l0oplz46q9bj5si2qo&st=o3g4x2ci&raw=1" alt="Foto 13" />
     </div>
 
     <!-- Foto 14 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/griu3pdrxrfs06lyeitrz/IMG_0141.JPG?rlkey=384bvamtng4jbj66f8ulithba&st=5yyilm23&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/griu3pdrxrfs06lyeitrz/IMG_0141.JPG?rlkey=384bvamtng4jbj66f8ulithba&st=5yyilm23&raw=1" alt="Foto 14" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/griu3pdrxrfs06lyeitrz/IMG_0141.JPG?rlkey=384bvamtng4jbj66f8ulithba&st=5yyilm23&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/griu3pdrxrfs06lyeitrz/IMG_0141.JPG?rlkey=384bvamtng4jbj66f8ulithba&st=5yyilm23&raw=1" alt="Foto 14" />
     </div>
 
     <!-- Foto 15 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/pcrpl7sgc11yxh1ynkooa/IMG_0148.JPG?rlkey=mwzcf4ig90rwcwke67i8ckzfs&st=nkvissap&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/pcrpl7sgc11yxh1ynkooa/IMG_0148.JPG?rlkey=mwzcf4ig90rwcwke67i8ckzfs&st=nkvissap&raw=1" alt="Foto 15" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/pcrpl7sgc11yxh1ynkooa/IMG_0148.JPG?rlkey=mwzcf4ig90rwcwke67i8ckzfs&st=nkvissap&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/pcrpl7sgc11yxh1ynkooa/IMG_0148.JPG?rlkey=mwzcf4ig90rwcwke67i8ckzfs&st=nkvissap&raw=1" alt="Foto 15" />
     </div>
 
     <!-- Foto 16 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/9iz9wz8pxzi1at54oi3ph/IMG_0143.JPG?rlkey=pj6czskf3yki0g7sh7y2d00ct&st=r7plruzy&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/9iz9wz8pxzi1at54oi3ph/IMG_0143.JPG?rlkey=pj6czskf3yki0g7sh7y2d00ct&st=r7plruzy&raw=1" alt="Foto 16" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/9iz9wz8pxzi1at54oi3ph/IMG_0143.JPG?rlkey=pj6czskf3yki0g7sh7y2d00ct&st=r7plruzy&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/9iz9wz8pxzi1at54oi3ph/IMG_0143.JPG?rlkey=pj6czskf3yki0g7sh7y2d00ct&st=r7plruzy&raw=1" alt="Foto 16" />
     </div>
 
     <!-- Foto 17 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/nwyiyxo13lefq5ws5z8l9/IMG_0156.JPG?rlkey=v4ehvad4a9uo6ve3as2hhd31h&st=s4a0dp4h&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/nwyiyxo13lefq5ws5z8l9/IMG_0156.JPG?rlkey=v4ehvad4a9uo6ve3as2hhd31h&st=s4a0dp4h&raw=1" alt="Foto 17" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/nwyiyxo13lefq5ws5z8l9/IMG_0156.JPG?rlkey=v4ehvad4a9uo6ve3as2hhd31h&st=s4a0dp4h&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/nwyiyxo13lefq5ws5z8l9/IMG_0156.JPG?rlkey=v4ehvad4a9uo6ve3as2hhd31h&st=s4a0dp4h&raw=1" alt="Foto 17" />
     </div>
 
     <!-- Foto 18 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/zwk1mdsjjl5cpygeaq6dr/IMG_0142.JPG?rlkey=0grdwsjbmqffjwx7tey8019ga&st=mi0l1v7k&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/zwk1mdsjjl5cpygeaq6dr/IMG_0142.JPG?rlkey=0grdwsjbmqffjwx7tey8019ga&st=mi0l1v7k&raw=1" alt="Foto 18" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/zwk1mdsjjl5cpygeaq6dr/IMG_0142.JPG?rlkey=0grdwsjbmqffjwx7tey8019ga&st=mi0l1v7k&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/zwk1mdsjjl5cpygeaq6dr/IMG_0142.JPG?rlkey=0grdwsjbmqffjwx7tey8019ga&st=mi0l1v7k&raw=1" alt="Foto 18" />
     </div>
 
     <!-- Foto 19 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/b00b1muux9501rjd0hscf/IMG_0157.JPG?rlkey=vwo1z2w9vsms340amspgcnz88&st=u9wv32au&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/b00b1muux9501rjd0hscf/IMG_0157.JPG?rlkey=vwo1z2w9vsms340amspgcnz88&st=u9wv32au&raw=1" alt="Foto 19" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/b00b1muux9501rjd0hscf/IMG_0157.JPG?rlkey=vwo1z2w9vsms340amspgcnz88&st=u9wv32au&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/b00b1muux9501rjd0hscf/IMG_0157.JPG?rlkey=vwo1z2w9vsms340amspgcnz88&st=u9wv32au&raw=1" alt="Foto 19" />
     </div>
 
     <!-- Foto 20 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/6q0kvm8x2ezpjwo5zsbyp/IMG_0136.JPG?rlkey=iu29y0705nbi6oxim2sr0a44y&st=m8sdzp02&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/6q0kvm8x2ezpjwo5zsbyp/IMG_0136.JPG?rlkey=iu29y0705nbi6oxim2sr0a44y&st=m8sdzp02&raw=1" alt="Foto 20" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/6q0kvm8x2ezpjwo5zsbyp/IMG_0136.JPG?rlkey=iu29y0705nbi6oxim2sr0a44y&st=m8sdzp02&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/6q0kvm8x2ezpjwo5zsbyp/IMG_0136.JPG?rlkey=iu29y0705nbi6oxim2sr0a44y&st=m8sdzp02&raw=1" alt="Foto 20" />
     </div>
 
     <!-- Foto 21 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/54jqlocrxcruimtlx9gjh/IMG_0137.JPG?rlkey=qibu4fo2epc0as7a5ofsg18w6&st=iofvugij&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/54jqlocrxcruimtlx9gjh/IMG_0137.JPG?rlkey=qibu4fo2epc0as7a5ofsg18w6&st=iofvugij&raw=1" alt="Foto 21" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/54jqlocrxcruimtlx9gjh/IMG_0137.JPG?rlkey=qibu4fo2epc0as7a5ofsg18w6&st=iofvugij&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/54jqlocrxcruimtlx9gjh/IMG_0137.JPG?rlkey=qibu4fo2epc0as7a5ofsg18w6&st=iofvugij&raw=1" alt="Foto 21" />
     </div>
 
     <!-- Foto 22 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/7m7y8dcqkz5vzkzswtf1f/IMG_0135.JPG?rlkey=qc2a8bstxmf92yzxi5sihnu0o&st=psevwao2&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/7m7y8dcqkz5vzkzswtf1f/IMG_0135.JPG?rlkey=qc2a8bstxmf92yzxi5sihnu0o&st=psevwao2&raw=1" alt="Foto 22" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/7m7y8dcqkz5vzkzswtf1f/IMG_0135.JPG?rlkey=qc2a8bstxmf92yzxi5sihnu0o&st=psevwao2&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/7m7y8dcqkz5vzkzswtf1f/IMG_0135.JPG?rlkey=qc2a8bstxmf92yzxi5sihnu0o&st=psevwao2&raw=1" alt="Foto 22" />
     </div>
 
     <!-- Foto 23 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/rarn9d1i6gjnf1079s7t6/IMG_0134.JPG?rlkey=f8tst12zo3tdmldf1tf0cfhkv&st=taf5gwwr&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/rarn9d1i6gjnf1079s7t6/IMG_0134.JPG?rlkey=f8tst12zo3tdmldf1tf0cfhkv&st=taf5gwwr&raw=1" alt="Foto 23" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/rarn9d1i6gjnf1079s7t6/IMG_0134.JPG?rlkey=f8tst12zo3tdmldf1tf0cfhkv&st=taf5gwwr&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/rarn9d1i6gjnf1079s7t6/IMG_0134.JPG?rlkey=f8tst12zo3tdmldf1tf0cfhkv&st=taf5gwwr&raw=1" alt="Foto 23" />
     </div>
 
     <!-- Foto 24 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/1l9wkcvkmc2hezjobmlww/IMG_0130.JPG?rlkey=0c2pzybb4kxerhjyjr6h61yji&st=0297scyb&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/1l9wkcvkmc2hezjobmlww/IMG_0130.JPG?rlkey=0c2pzybb4kxerhjyjr6h61yji&st=0297scyb&raw=1" alt="Foto 24" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/1l9wkcvkmc2hezjobmlww/IMG_0130.JPG?rlkey=0c2pzybb4kxerhjyjr6h61yji&st=0297scyb&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/1l9wkcvkmc2hezjobmlww/IMG_0130.JPG?rlkey=0c2pzybb4kxerhjyjr6h61yji&st=0297scyb&raw=1" alt="Foto 24" />
     </div>
 
     <!-- Foto 25 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/g1s9kpld812ky4ru1m2vg/IMG_0131.JPG?rlkey=agfcj44o9hm96iuo7bs86n8lu&st=8vxjtbo4&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/g1s9kpld812ky4ru1m2vg/IMG_0131.JPG?rlkey=agfcj44o9hm96iuo7bs86n8lu&st=8vxjtbo4&raw=1" alt="Foto 25" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/g1s9kpld812ky4ru1m2vg/IMG_0131.JPG?rlkey=agfcj44o9hm96iuo7bs86n8lu&st=8vxjtbo4&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/g1s9kpld812ky4ru1m2vg/IMG_0131.JPG?rlkey=agfcj44o9hm96iuo7bs86n8lu&st=8vxjtbo4&raw=1" alt="Foto 25" />
     </div>
 
     <!-- Foto 26 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/xp53byl7d72cxfvkd0et1/IMG_0133.JPG?rlkey=8m8sbecn17vscmiaov01tdyql&st=jumxvxh0&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/xp53byl7d72cxfvkd0et1/IMG_0133.JPG?rlkey=8m8sbecn17vscmiaov01tdyql&st=jumxvxh0&raw=1" alt="Foto 26" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/xp53byl7d72cxfvkd0et1/IMG_0133.JPG?rlkey=8m8sbecn17vscmiaov01tdyql&st=jumxvxh0&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/xp53byl7d72cxfvkd0et1/IMG_0133.JPG?rlkey=8m8sbecn17vscmiaov01tdyql&st=jumxvxh0&raw=1" alt="Foto 26" />
     </div>
 
     <!-- Foto 27 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/iiqb11a8dze4utbr2p0pw/IMG_0132.JPG?rlkey=1cgqhyhmrf9xwje85nslugqda&st=y1mx05xa&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/iiqb11a8dze4utbr2p0pw/IMG_0132.JPG?rlkey=1cgqhyhmrf9xwje85nslugqda&st=y1mx05xa&raw=1" alt="Foto 27" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/iiqb11a8dze4utbr2p0pw/IMG_0132.JPG?rlkey=1cgqhyhmrf9xwje85nslugqda&st=y1mx05xa&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/iiqb11a8dze4utbr2p0pw/IMG_0132.JPG?rlkey=1cgqhyhmrf9xwje85nslugqda&st=y1mx05xa&raw=1" alt="Foto 27" />
     </div>
 
     <!-- Foto 28 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/hr4ib5rpqxpi4c2itwwec/IMG_0129.JPG?rlkey=ujw4o9iwmnxct6ofwyipyq5fb&st=t7fw43r1&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/hr4ib5rpqxpi4c2itwwec/IMG_0129.JPG?rlkey=ujw4o9iwmnxct6ofwyipyq5fb&st=t7fw43r1&raw=1" alt="Foto 28" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/hr4ib5rpqxpi4c2itwwec/IMG_0129.JPG?rlkey=ujw4o9iwmnxct6ofwyipyq5fb&st=t7fw43r1&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/hr4ib5rpqxpi4c2itwwec/IMG_0129.JPG?rlkey=ujw4o9iwmnxct6ofwyipyq5fb&st=t7fw43r1&raw=1" alt="Foto 28" />
     </div>
 
     <!-- Foto 29 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/jyhb6jffrivmr1q0nmriz/IMG_0128.JPG?rlkey=aoyqfiduwsr98kiccridvvrwe&st=44qmd11v&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/jyhb6jffrivmr1q0nmriz/IMG_0128.JPG?rlkey=aoyqfiduwsr98kiccridvvrwe&st=44qmd11v&raw=1" alt="Foto 29" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/jyhb6jffrivmr1q0nmriz/IMG_0128.JPG?rlkey=aoyqfiduwsr98kiccridvvrwe&st=44qmd11v&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/jyhb6jffrivmr1q0nmriz/IMG_0128.JPG?rlkey=aoyqfiduwsr98kiccridvvrwe&st=44qmd11v&raw=1" alt="Foto 29" />
     </div>
 
     <!-- Foto 30 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/q32w0at6ap5fftetciy87/IMG_0126.JPG?rlkey=3spxsu23buv6h5j88r5z9i11w&st=6h0w4rzp&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/q32w0at6ap5fftetciy87/IMG_0126.JPG?rlkey=3spxsu23buv6h5j88r5z9i11w&st=6h0w4rzp&raw=1" alt="Foto 30" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/q32w0at6ap5fftetciy87/IMG_0126.JPG?rlkey=3spxsu23buv6h5j88r5z9i11w&st=6h0w4rzp&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/q32w0at6ap5fftetciy87/IMG_0126.JPG?rlkey=3spxsu23buv6h5j88r5z9i11w&st=6h0w4rzp&raw=1" alt="Foto 30" />
     </div>
 
     <!-- Foto 31 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/fsgfqruz485ynju23n75m/IMG_0127.JPG?rlkey=vng2lo713pgra0t27ydklgmq0&st=qacentpj&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/fsgfqruz485ynju23n75m/IMG_0127.JPG?rlkey=vng2lo713pgra0t27ydklgmq0&st=qacentpj&raw=1" alt="Foto 31" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/fsgfqruz485ynju23n75m/IMG_0127.JPG?rlkey=vng2lo713pgra0t27ydklgmq0&st=qacentpj&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/fsgfqruz485ynju23n75m/IMG_0127.JPG?rlkey=vng2lo713pgra0t27ydklgmq0&st=qacentpj&raw=1" alt="Foto 31" />
     </div>
 
     <!-- Foto 32 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/gxzra2h9pt95zlbqkdx05/IMG_0123.JPG?rlkey=9er2mb3q701xmvqql8yy8ah35&st=xfzp7ism&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/gxzra2h9pt95zlbqkdx05/IMG_0123.JPG?rlkey=9er2mb3q701xmvqql8yy8ah35&st=xfzp7ism&raw=1" alt="Foto 32" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/gxzra2h9pt95zlbqkdx05/IMG_0123.JPG?rlkey=9er2mb3q701xmvqql8yy8ah35&st=xfzp7ism&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/gxzra2h9pt95zlbqkdx05/IMG_0123.JPG?rlkey=9er2mb3q701xmvqql8yy8ah35&st=xfzp7ism&raw=1" alt="Foto 32" />
     </div>
 
     <!-- Foto 33 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/oic6sq4zw3yjl3qi83opi/IMG_0122.JPG?rlkey=deu92djq1hjnm0moih64sebkm&st=dpo7onew&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/oic6sq4zw3yjl3qi83opi/IMG_0122.JPG?rlkey=deu92djq1hjnm0moih64sebkm&st=dpo7onew&raw=1" alt="Foto 33" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/oic6sq4zw3yjl3qi83opi/IMG_0122.JPG?rlkey=deu92djq1hjnm0moih64sebkm&st=dpo7onew&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/oic6sq4zw3yjl3qi83opi/IMG_0122.JPG?rlkey=deu92djq1hjnm0moih64sebkm&st=dpo7onew&raw=1" alt="Foto 33" />
     </div>
 
     <!-- Foto 34 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/yvs6391kkroeog8kqmtor/IMG_0121.JPG?rlkey=lbzr0gdubc0fgjnwbccudvkct&st=irdey0si&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/yvs6391kkroeog8kqmtor/IMG_0121.JPG?rlkey=lbzr0gdubc0fgjnwbccudvkct&st=irdey0si&raw=1" alt="Foto 34" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/yvs6391kkroeog8kqmtor/IMG_0121.JPG?rlkey=lbzr0gdubc0fgjnwbccudvkct&st=irdey0si&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/yvs6391kkroeog8kqmtor/IMG_0121.JPG?rlkey=lbzr0gdubc0fgjnwbccudvkct&st=irdey0si&raw=1" alt="Foto 34" />
     </div>
 
     <!-- Foto 35 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/clj2z9qtq803y11577o5j/IMG_0125.JPG?rlkey=rgg57424b6yqm0o8nuz0lqci9&st=kwf82987&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/clj2z9qtq803y11577o5j/IMG_0125.JPG?rlkey=rgg57424b6yqm0o8nuz0lqci9&st=kwf82987&raw=1" alt="Foto 35" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/clj2z9qtq803y11577o5j/IMG_0125.JPG?rlkey=rgg57424b6yqm0o8nuz0lqci9&st=kwf82987&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/clj2z9qtq803y11577o5j/IMG_0125.JPG?rlkey=rgg57424b6yqm0o8nuz0lqci9&st=kwf82987&raw=1" alt="Foto 35" />
     </div>
 
     <!-- Foto 36 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/oxl04n4wf2xbixigo2dsv/IMG_0124.JPG?rlkey=a6p51al5guaueb97bquacozu3&st=x5gnx7cr&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/oxl04n4wf2xbixigo2dsv/IMG_0124.JPG?rlkey=a6p51al5guaueb97bquacozu3&st=x5gnx7cr&raw=1" alt="Foto 36" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/oxl04n4wf2xbixigo2dsv/IMG_0124.JPG?rlkey=a6p51al5guaueb97bquacozu3&st=x5gnx7cr&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/oxl04n4wf2xbixigo2dsv/IMG_0124.JPG?rlkey=a6p51al5guaueb97bquacozu3&st=x5gnx7cr&raw=1" alt="Foto 36" />
     </div>
 
     <!-- Foto 37 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/90117pv8g02ai2cacmj9c/IMG_0120.JPG?rlkey=u9z35xu7azvdgjpbbcx8xorxu&st=l1gk5vhy&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/90117pv8g02ai2cacmj9c/IMG_0120.JPG?rlkey=u9z35xu7azvdgjpbbcx8xorxu&st=l1gk5vhy&raw=1" alt="Foto 37" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/90117pv8g02ai2cacmj9c/IMG_0120.JPG?rlkey=u9z35xu7azvdgjpbbcx8xorxu&st=l1gk5vhy&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/90117pv8g02ai2cacmj9c/IMG_0120.JPG?rlkey=u9z35xu7azvdgjpbbcx8xorxu&st=l1gk5vhy&raw=1" alt="Foto 37" />
     </div>
 
     <!-- Foto 38 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/rlg984sm5cbyyefrtt986/IMG_0119.JPG?rlkey=q4gq8c0ltfoubg5hvlx5liv6x&st=zzq24srx&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/rlg984sm5cbyyefrtt986/IMG_0119.JPG?rlkey=q4gq8c0ltfoubg5hvlx5liv6x&st=zzq24srx&raw=1" alt="Foto 38" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/rlg984sm5cbyyefrtt986/IMG_0119.JPG?rlkey=q4gq8c0ltfoubg5hvlx5liv6x&st=zzq24srx&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/rlg984sm5cbyyefrtt986/IMG_0119.JPG?rlkey=q4gq8c0ltfoubg5hvlx5liv6x&st=zzq24srx&raw=1" alt="Foto 38" />
     </div>
 
     <!-- Foto 39 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/boheew7t35bg2hrttv869/IMG_0114.JPG?rlkey=9twydicoho5wtnvcdlridqeb9&st=zowcsc3k&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/boheew7t35bg2hrttv869/IMG_0114.JPG?rlkey=9twydicoho5wtnvcdlridqeb9&st=zowcsc3k&raw=1" alt="Foto 39" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/boheew7t35bg2hrttv869/IMG_0114.JPG?rlkey=9twydicoho5wtnvcdlridqeb9&st=zowcsc3k&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/boheew7t35bg2hrttv869/IMG_0114.JPG?rlkey=9twydicoho5wtnvcdlridqeb9&st=zowcsc3k&raw=1" alt="Foto 39" />
     </div>
 
     <!-- Foto 40 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/z2bpe550p1zft89n24rpq/IMG_0117.JPG?rlkey=yu57qchja234phhtaqrywlnwt&st=k7l6a3cu&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/z2bpe550p1zft89n24rpq/IMG_0117.JPG?rlkey=yu57qchja234phhtaqrywlnwt&st=k7l6a3cu&raw=1" alt="Foto 40" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/z2bpe550p1zft89n24rpq/IMG_0117.JPG?rlkey=yu57qchja234phhtaqrywlnwt&st=k7l6a3cu&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/z2bpe550p1zft89n24rpq/IMG_0117.JPG?rlkey=yu57qchja234phhtaqrywlnwt&st=k7l6a3cu&raw=1" alt="Foto 40" />
     </div>
 
     <!-- Foto 41 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/z320t1hcsla33ahljx5nb/IMG_0118.JPG?rlkey=4v2wlvd6aka5x5ueoooh1q9zg&st=rebig825&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/z320t1hcsla33ahljx5nb/IMG_0118.JPG?rlkey=4v2wlvd6aka5x5ueoooh1q9zg&st=rebig825&raw=1" alt="Foto 41" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/z320t1hcsla33ahljx5nb/IMG_0118.JPG?rlkey=4v2wlvd6aka5x5ueoooh1q9zg&st=rebig825&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/z320t1hcsla33ahljx5nb/IMG_0118.JPG?rlkey=4v2wlvd6aka5x5ueoooh1q9zg&st=rebig825&raw=1" alt="Foto 41" />
     </div>
 
     <!-- Foto 42 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/f1ixh8y6bhloisv2br4w4/IMG_0115.JPG?rlkey=ccvx8tvi7ib0m5p6k7st7d260&st=rs3extdb&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/f1ixh8y6bhloisv2br4w4/IMG_0115.JPG?rlkey=ccvx8tvi7ib0m5p6k7st7d260&st=rs3extdb&raw=1" alt="Foto 42" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/f1ixh8y6bhloisv2br4w4/IMG_0115.JPG?rlkey=ccvx8tvi7ib0m5p6k7st7d260&st=rs3extdb&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/f1ixh8y6bhloisv2br4w4/IMG_0115.JPG?rlkey=ccvx8tvi7ib0m5p6k7st7d260&st=rs3extdb&raw=1" alt="Foto 42" />
     </div>
 
     <!-- Foto 43 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/j44zjivubl8y7q62t3to5/IMG_0116.JPG?rlkey=gjsvvzze7is3a28vrmj583eqq&st=rr3edeyi&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/j44zjivubl8y7q62t3to5/IMG_0116.JPG?rlkey=gjsvvzze7is3a28vrmj583eqq&st=rr3edeyi&raw=1" alt="Foto 43" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/j44zjivubl8y7q62t3to5/IMG_0116.JPG?rlkey=gjsvvzze7is3a28vrmj583eqq&st=rr3edeyi&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/j44zjivubl8y7q62t3to5/IMG_0116.JPG?rlkey=gjsvvzze7is3a28vrmj583eqq&st=rr3edeyi&raw=1" alt="Foto 43" />
     </div>
 
     <!-- Foto 44 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/m2obhu8tsdm6413ofpaku/IMG_0113.JPG?rlkey=5o72d6g1cngc5bt1wzuf8al9y&st=5ofhe1u8&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/m2obhu8tsdm6413ofpaku/IMG_0113.JPG?rlkey=5o72d6g1cngc5bt1wzuf8al9y&st=5ofhe1u8&raw=1" alt="Foto 44" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/m2obhu8tsdm6413ofpaku/IMG_0113.JPG?rlkey=5o72d6g1cngc5bt1wzuf8al9y&st=5ofhe1u8&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/m2obhu8tsdm6413ofpaku/IMG_0113.JPG?rlkey=5o72d6g1cngc5bt1wzuf8al9y&st=5ofhe1u8&raw=1" alt="Foto 44" />
     </div>
 
     <!-- Foto 45 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/k5h7fyqevtsjsnvrhqqvg/IMG_0112.JPG?rlkey=qb1tlty2pyelk83y4yi0z3pxr&st=qucpp7pb&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/k5h7fyqevtsjsnvrhqqvg/IMG_0112.JPG?rlkey=qb1tlty2pyelk83y4yi0z3pxr&st=qucpp7pb&raw=1" alt="Foto 45" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/k5h7fyqevtsjsnvrhqqvg/IMG_0112.JPG?rlkey=qb1tlty2pyelk83y4yi0z3pxr&st=qucpp7pb&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/k5h7fyqevtsjsnvrhqqvg/IMG_0112.JPG?rlkey=qb1tlty2pyelk83y4yi0z3pxr&st=qucpp7pb&raw=1" alt="Foto 45" />
     </div>
 
     <!-- Foto 46 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/e3gel6ce3o1paggokb419/IMG_0109.JPG?rlkey=kcia22or3ggv8uc0kn2sf3lt5&st=y4ipre8d&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/e3gel6ce3o1paggokb419/IMG_0109.JPG?rlkey=kcia22or3ggv8uc0kn2sf3lt5&st=y4ipre8d&raw=1" alt="Foto 46" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/e3gel6ce3o1paggokb419/IMG_0109.JPG?rlkey=kcia22or3ggv8uc0kn2sf3lt5&st=y4ipre8d&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/e3gel6ce3o1paggokb419/IMG_0109.JPG?rlkey=kcia22or3ggv8uc0kn2sf3lt5&st=y4ipre8d&raw=1" alt="Foto 46" />
     </div>
 
     <!-- Foto 47 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/c3abd5k4c7xkdvj7ztqdb/IMG_0108.JPG?rlkey=uc8hqkbbboibor5ada09h712o&st=pczz9n1x&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/c3abd5k4c7xkdvj7ztqdb/IMG_0108.JPG?rlkey=uc8hqkbbboibor5ada09h712o&st=pczz9n1x&raw=1" alt="Foto 47" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/c3abd5k4c7xkdvj7ztqdb/IMG_0108.JPG?rlkey=uc8hqkbbboibor5ada09h712o&st=pczz9n1x&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/c3abd5k4c7xkdvj7ztqdb/IMG_0108.JPG?rlkey=uc8hqkbbboibor5ada09h712o&st=pczz9n1x&raw=1" alt="Foto 47" />
     </div>
 
     <!-- Foto 48 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/hhol72ykecm72v7joj7l6/IMG_0106.JPG?rlkey=z5f99zn8czg8yv7nf5eqmutx4&st=eyqkmpn6&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/hhol72ykecm72v7joj7l6/IMG_0106.JPG?rlkey=z5f99zn8czg8yv7nf5eqmutx4&st=eyqkmpn6&raw=1" alt="Foto 48" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/hhol72ykecm72v7joj7l6/IMG_0106.JPG?rlkey=z5f99zn8czg8yv7nf5eqmutx4&st=eyqkmpn6&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/hhol72ykecm72v7joj7l6/IMG_0106.JPG?rlkey=z5f99zn8czg8yv7nf5eqmutx4&st=eyqkmpn6&raw=1" alt="Foto 48" />
     </div>
 
     <!-- Foto 49 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/odv2j2xec04j8pe8b1g9o/IMG_0107.JPG?rlkey=phrf2pcyk0xucexnwzr99k3sk&st=k0219c67&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/odv2j2xec04j8pe8b1g9o/IMG_0107.JPG?rlkey=phrf2pcyk0xucexnwzr99k3sk&st=k0219c67&raw=1" alt="Foto 49" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/odv2j2xec04j8pe8b1g9o/IMG_0107.JPG?rlkey=phrf2pcyk0xucexnwzr99k3sk&st=k0219c67&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/odv2j2xec04j8pe8b1g9o/IMG_0107.JPG?rlkey=phrf2pcyk0xucexnwzr99k3sk&st=k0219c67&raw=1" alt="Foto 49" />
     </div>
 
     <!-- Foto 50 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/6wzzqf6cbzo3hrhfyf7c1/IMG_0110.JPG?rlkey=xo8ualahsowxlzchs2fm390nj&st=ub9xuvwq&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/6wzzqf6cbzo3hrhfyf7c1/IMG_0110.JPG?rlkey=xo8ualahsowxlzchs2fm390nj&st=ub9xuvwq&raw=1" alt="Foto 50" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/6wzzqf6cbzo3hrhfyf7c1/IMG_0110.JPG?rlkey=xo8ualahsowxlzchs2fm390nj&st=ub9xuvwq&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/6wzzqf6cbzo3hrhfyf7c1/IMG_0110.JPG?rlkey=xo8ualahsowxlzchs2fm390nj&st=ub9xuvwq&raw=1" alt="Foto 50" />
     </div>
 
     <!-- Foto 51 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/7x305el11cx8ginrbx467/IMG_0111.JPG?rlkey=ewkqshdui7mbt37orku199uy6&st=jinfmpa9&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/7x305el11cx8ginrbx467/IMG_0111.JPG?rlkey=ewkqshdui7mbt37orku199uy6&st=jinfmpa9&raw=1" alt="Foto 51" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/7x305el11cx8ginrbx467/IMG_0111.JPG?rlkey=ewkqshdui7mbt37orku199uy6&st=jinfmpa9&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/7x305el11cx8ginrbx467/IMG_0111.JPG?rlkey=ewkqshdui7mbt37orku199uy6&st=jinfmpa9&raw=1" alt="Foto 51" />
     </div>
 
     <!-- Foto 52 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/nrkdfvrra6uz5wrg0ypd0/IMG_0100.JPG?rlkey=bo3s563mwz26atrpg8hoteplu&st=dgqh5uz8&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/nrkdfvrra6uz5wrg0ypd0/IMG_0100.JPG?rlkey=bo3s563mwz26atrpg8hoteplu&st=dgqh5uz8&raw=1" alt="Foto 52" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/nrkdfvrra6uz5wrg0ypd0/IMG_0100.JPG?rlkey=bo3s563mwz26atrpg8hoteplu&st=dgqh5uz8&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/nrkdfvrra6uz5wrg0ypd0/IMG_0100.JPG?rlkey=bo3s563mwz26atrpg8hoteplu&st=dgqh5uz8&raw=1" alt="Foto 52" />
     </div>
 
     <!-- Foto 53 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/1dp2aibpuw13x1akkaei9/IMG_0103.JPG?rlkey=1ye6rwyfsh1nt42znbntpznuq&st=dxdd4m7p&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/1dp2aibpuw13x1akkaei9/IMG_0103.JPG?rlkey=1ye6rwyfsh1nt42znbntpznuq&st=dxdd4m7p&raw=1" alt="Foto 53" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/1dp2aibpuw13x1akkaei9/IMG_0103.JPG?rlkey=1ye6rwyfsh1nt42znbntpznuq&st=dxdd4m7p&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/1dp2aibpuw13x1akkaei9/IMG_0103.JPG?rlkey=1ye6rwyfsh1nt42znbntpznuq&st=dxdd4m7p&raw=1" alt="Foto 53" />
     </div>
 
     <!-- Foto 54 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/9ruu2j4d0vrdk2goqtz58/IMG_0102.JPG?rlkey=khxnu8m98p0xlwwg7if5nefye&st=8ogguetw&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/9ruu2j4d0vrdk2goqtz58/IMG_0102.JPG?rlkey=khxnu8m98p0xlwwg7if5nefye&st=8ogguetw&raw=1" alt="Foto 54" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/9ruu2j4d0vrdk2goqtz58/IMG_0102.JPG?rlkey=khxnu8m98p0xlwwg7if5nefye&st=8ogguetw&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/9ruu2j4d0vrdk2goqtz58/IMG_0102.JPG?rlkey=khxnu8m98p0xlwwg7if5nefye&st=8ogguetw&raw=1" alt="Foto 54" />
     </div>
 
     <!-- Foto 55 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/0c9nnaom70hzf0hkpws9c/IMG_0105.JPG?rlkey=ok9i5xnhzt0fxk92h5uvkidw8&st=5xxcl7nn&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/0c9nnaom70hzf0hkpws9c/IMG_0105.JPG?rlkey=ok9i5xnhzt0fxk92h5uvkidw8&st=5xxcl7nn&raw=1" alt="Foto 55" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/0c9nnaom70hzf0hkpws9c/IMG_0105.JPG?rlkey=ok9i5xnhzt0fxk92h5uvkidw8&st=5xxcl7nn&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/0c9nnaom70hzf0hkpws9c/IMG_0105.JPG?rlkey=ok9i5xnhzt0fxk92h5uvkidw8&st=5xxcl7nn&raw=1" alt="Foto 55" />
     </div>
 
     <!-- Foto 56 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/r7202l2hc5rjtwxcx9ifz/IMG_0104.JPG?rlkey=bpvkv5n9s8vfkqsmhj56bmo11&st=nqnj07yh&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/r7202l2hc5rjtwxcx9ifz/IMG_0104.JPG?rlkey=bpvkv5n9s8vfkqsmhj56bmo11&st=nqnj07yh&raw=1" alt="Foto 56" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/r7202l2hc5rjtwxcx9ifz/IMG_0104.JPG?rlkey=bpvkv5n9s8vfkqsmhj56bmo11&st=nqnj07yh&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/r7202l2hc5rjtwxcx9ifz/IMG_0104.JPG?rlkey=bpvkv5n9s8vfkqsmhj56bmo11&st=nqnj07yh&raw=1" alt="Foto 56" />
     </div>
 
     <!-- Foto 57 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/66pdf84do95zd4b0k0xjn/IMG_0101.JPG?rlkey=mafl3pk71x39n2mh9sblgv11c&st=fptcgplo&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/66pdf84do95zd4b0k0xjn/IMG_0101.JPG?rlkey=mafl3pk71x39n2mh9sblgv11c&st=fptcgplo&raw=1" alt="Foto 57" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/66pdf84do95zd4b0k0xjn/IMG_0101.JPG?rlkey=mafl3pk71x39n2mh9sblgv11c&st=fptcgplo&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/66pdf84do95zd4b0k0xjn/IMG_0101.JPG?rlkey=mafl3pk71x39n2mh9sblgv11c&st=fptcgplo&raw=1" alt="Foto 57" />
     </div>
 
     <!-- Foto 58 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/plk6bf69youm9dbg73vny/IMG_0096.JPG?rlkey=jo62m5nk1bxy92irs62kz03vo&st=cmda29e6&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/plk6bf69youm9dbg73vny/IMG_0096.JPG?rlkey=jo62m5nk1bxy92irs62kz03vo&st=cmda29e6&raw=1" alt="Foto 58" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/plk6bf69youm9dbg73vny/IMG_0096.JPG?rlkey=jo62m5nk1bxy92irs62kz03vo&st=cmda29e6&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/plk6bf69youm9dbg73vny/IMG_0096.JPG?rlkey=jo62m5nk1bxy92irs62kz03vo&st=cmda29e6&raw=1" alt="Foto 58" />
     </div>
 
     <!-- Foto 59 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/zie6zt3vxsxfdhrze24u0/IMG_0097.JPG?rlkey=suix7q2cm9v1gfbl1wi0uvgi3&st=twphvwxh&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/zie6zt3vxsxfdhrze24u0/IMG_0097.JPG?rlkey=suix7q2cm9v1gfbl1wi0uvgi3&st=twphvwxh&raw=1" alt="Foto 59" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/zie6zt3vxsxfdhrze24u0/IMG_0097.JPG?rlkey=suix7q2cm9v1gfbl1wi0uvgi3&st=twphvwxh&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/zie6zt3vxsxfdhrze24u0/IMG_0097.JPG?rlkey=suix7q2cm9v1gfbl1wi0uvgi3&st=twphvwxh&raw=1" alt="Foto 59" />
     </div>
 
     <!-- Foto 60 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/ubim9trye0wwcbepkcy7p/IMG_0094.JPG?rlkey=iw6t1dcwvzbpu2o2i7ez6095g&st=pld51p7a&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/ubim9trye0wwcbepkcy7p/IMG_0094.JPG?rlkey=iw6t1dcwvzbpu2o2i7ez6095g&st=pld51p7a&raw=1" alt="Foto 60" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/ubim9trye0wwcbepkcy7p/IMG_0094.JPG?rlkey=iw6t1dcwvzbpu2o2i7ez6095g&st=pld51p7a&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/ubim9trye0wwcbepkcy7p/IMG_0094.JPG?rlkey=iw6t1dcwvzbpu2o2i7ez6095g&st=pld51p7a&raw=1" alt="Foto 60" />
     </div>
 
     <!-- Foto 61 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/h5aymriy4b1et877shtii/IMG_0099.JPG?rlkey=b5v23g1h5see6kn9t31zhc41t&st=uszmnyfy&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/h5aymriy4b1et877shtii/IMG_0099.JPG?rlkey=b5v23g1h5see6kn9t31zhc41t&st=uszmnyfy&raw=1" alt="Foto 61" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/h5aymriy4b1et877shtii/IMG_0099.JPG?rlkey=b5v23g1h5see6kn9t31zhc41t&st=uszmnyfy&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/h5aymriy4b1et877shtii/IMG_0099.JPG?rlkey=b5v23g1h5see6kn9t31zhc41t&st=uszmnyfy&raw=1" alt="Foto 61" />
     </div>
 
     <!-- Foto 62 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/ssitpavtmqq7vsblp96m2/IMG_0098.JPG?rlkey=bvb8bp15r95seadn62rqyn49i&st=spuf8vrk&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/ssitpavtmqq7vsblp96m2/IMG_0098.JPG?rlkey=bvb8bp15r95seadn62rqyn49i&st=spuf8vrk&raw=1" alt="Foto 62" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/ssitpavtmqq7vsblp96m2/IMG_0098.JPG?rlkey=bvb8bp15r95seadn62rqyn49i&st=spuf8vrk&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/ssitpavtmqq7vsblp96m2/IMG_0098.JPG?rlkey=bvb8bp15r95seadn62rqyn49i&st=spuf8vrk&raw=1" alt="Foto 62" />
     </div>
 
     <!-- Foto 63 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/9qb5aftxso70jm0m00teh/IMG_0095.JPG?rlkey=m1rok7ocgfpu27opxor9raw27&st=emqetsyc&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/9qb5aftxso70jm0m00teh/IMG_0095.JPG?rlkey=m1rok7ocgfpu27opxor9raw27&st=emqetsyc&raw=1" alt="Foto 63" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/9qb5aftxso70jm0m00teh/IMG_0095.JPG?rlkey=m1rok7ocgfpu27opxor9raw27&st=emqetsyc&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/9qb5aftxso70jm0m00teh/IMG_0095.JPG?rlkey=m1rok7ocgfpu27opxor9raw27&st=emqetsyc&raw=1" alt="Foto 63" />
     </div>
 
     <!-- Foto 64 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/0nqcu1j34fij0xxe0l9pp/IMG_0085.JPG?rlkey=b4nj08ef2cq7z9kkr828me2ux&st=p8i6p46d&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/0nqcu1j34fij0xxe0l9pp/IMG_0085.JPG?rlkey=b4nj08ef2cq7z9kkr828me2ux&st=p8i6p46d&raw=1" alt="Foto 64" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/0nqcu1j34fij0xxe0l9pp/IMG_0085.JPG?rlkey=b4nj08ef2cq7z9kkr828me2ux&st=p8i6p46d&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/0nqcu1j34fij0xxe0l9pp/IMG_0085.JPG?rlkey=b4nj08ef2cq7z9kkr828me2ux&st=p8i6p46d&raw=1" alt="Foto 64" />
     </div>
 
     <!-- Foto 65 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/qzv9xxg7y87zhmq67ost9/IMG_0086.JPG?rlkey=thwajz3wlv8l5q6tzakwaig3l&st=2624k9rx&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/qzv9xxg7y87zhmq67ost9/IMG_0086.JPG?rlkey=thwajz3wlv8l5q6tzakwaig3l&st=2624k9rx&raw=1" alt="Foto 65" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/qzv9xxg7y87zhmq67ost9/IMG_0086.JPG?rlkey=thwajz3wlv8l5q6tzakwaig3l&st=2624k9rx&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/qzv9xxg7y87zhmq67ost9/IMG_0086.JPG?rlkey=thwajz3wlv8l5q6tzakwaig3l&st=2624k9rx&raw=1" alt="Foto 65" />
     </div>
 
     <!-- Foto 66 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/4g5551o570gi8gfc4key7/IMG_0093.JPG?rlkey=cxe9u2kqo3i2c3x7huvfh0rjk&st=zbf4rnip&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/4g5551o570gi8gfc4key7/IMG_0093.JPG?rlkey=cxe9u2kqo3i2c3x7huvfh0rjk&st=zbf4rnip&raw=1" alt="Foto 66" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/4g5551o570gi8gfc4key7/IMG_0093.JPG?rlkey=cxe9u2kqo3i2c3x7huvfh0rjk&st=zbf4rnip&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/4g5551o570gi8gfc4key7/IMG_0093.JPG?rlkey=cxe9u2kqo3i2c3x7huvfh0rjk&st=zbf4rnip&raw=1" alt="Foto 66" />
     </div>
 
     <!-- Foto 67 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/y6rp5kroz2yux7ucbr7c0/IMG_0087.JPG?rlkey=24diszx75tnt2iyushiw8fbls&st=xvdhl5n2&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/y6rp5kroz2yux7ucbr7c0/IMG_0087.JPG?rlkey=24diszx75tnt2iyushiw8fbls&st=xvdhl5n2&raw=1" alt="Foto 67" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/y6rp5kroz2yux7ucbr7c0/IMG_0087.JPG?rlkey=24diszx75tnt2iyushiw8fbls&st=xvdhl5n2&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/y6rp5kroz2yux7ucbr7c0/IMG_0087.JPG?rlkey=24diszx75tnt2iyushiw8fbls&st=xvdhl5n2&raw=1" alt="Foto 67" />
     </div>
 
     <!-- Foto 68 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/smtb37yhucrb15nglg4vs/IMG_0092.JPG?rlkey=fbbtzx06prsfnen5sovhizqkc&st=k1jlvoz8&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/smtb37yhucrb15nglg4vs/IMG_0092.JPG?rlkey=fbbtzx06prsfnen5sovhizqkc&st=k1jlvoz8&raw=1" alt="Foto 68" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/smtb37yhucrb15nglg4vs/IMG_0092.JPG?rlkey=fbbtzx06prsfnen5sovhizqkc&st=k1jlvoz8&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/smtb37yhucrb15nglg4vs/IMG_0092.JPG?rlkey=fbbtzx06prsfnen5sovhizqkc&st=k1jlvoz8&raw=1" alt="Foto 68" />
     </div>
 
     <!-- Foto 69 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/m82eu4csw1q9duf679bm5/IMG_0089.JPG?rlkey=plyo0ilz9z1a0prw2hhn7w8vq&st=o2ipmqa6&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/m82eu4csw1q9duf679bm5/IMG_0089.JPG?rlkey=plyo0ilz9z1a0prw2hhn7w8vq&st=o2ipmqa6&raw=1" alt="Foto 69" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/m82eu4csw1q9duf679bm5/IMG_0089.JPG?rlkey=plyo0ilz9z1a0prw2hhn7w8vq&st=o2ipmqa6&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/m82eu4csw1q9duf679bm5/IMG_0089.JPG?rlkey=plyo0ilz9z1a0prw2hhn7w8vq&st=o2ipmqa6&raw=1" alt="Foto 69" />
     </div>
 
     <!-- Foto 70 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/av4kosk7s1cwizpltrnwd/IMG_0083.JPG?rlkey=inar2za44tyev58gqgf7djkl6&st=w6kc7vu8&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/av4kosk7s1cwizpltrnwd/IMG_0083.JPG?rlkey=inar2za44tyev58gqgf7djkl6&st=w6kc7vu8&raw=1" alt="Foto 70" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/av4kosk7s1cwizpltrnwd/IMG_0083.JPG?rlkey=inar2za44tyev58gqgf7djkl6&st=w6kc7vu8&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/av4kosk7s1cwizpltrnwd/IMG_0083.JPG?rlkey=inar2za44tyev58gqgf7djkl6&st=w6kc7vu8&raw=1" alt="Foto 70" />
     </div>
 
     <!-- Foto 71 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/iu3xx43c31tg2jb4ubbj8/IMG_0082.JPG?rlkey=a2iyftn49ld30ng2ww3tlh89y&st=xrgue89g&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/iu3xx43c31tg2jb4ubbj8/IMG_0082.JPG?rlkey=a2iyftn49ld30ng2ww3tlh89y&st=xrgue89g&raw=1" alt="Foto 71" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/iu3xx43c31tg2jb4ubbj8/IMG_0082.JPG?rlkey=a2iyftn49ld30ng2ww3tlh89y&st=xrgue89g&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/iu3xx43c31tg2jb4ubbj8/IMG_0082.JPG?rlkey=a2iyftn49ld30ng2ww3tlh89y&st=xrgue89g&raw=1" alt="Foto 71" />
     </div>
 
     <!-- Foto 72 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/25980gs3u232bq6fp2qgj/IMG_0080.JPG?rlkey=j12ucna9o0ptzbztxpbylpenn&st=7ik9ibka&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/25980gs3u232bq6fp2qgj/IMG_0080.JPG?rlkey=j12ucna9o0ptzbztxpbylpenn&st=7ik9ibka&raw=1" alt="Foto 72" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/25980gs3u232bq6fp2qgj/IMG_0080.JPG?rlkey=j12ucna9o0ptzbztxpbylpenn&st=7ik9ibka&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/25980gs3u232bq6fp2qgj/IMG_0080.JPG?rlkey=j12ucna9o0ptzbztxpbylpenn&st=7ik9ibka&raw=1" alt="Foto 72" />
     </div>
 
     <!-- Foto 73 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/0cdtb3jzdhm29kige74n4/IMG_0081.JPG?rlkey=z3472kat96a8jqw1h54u42b3b&st=1pibzev5&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/0cdtb3jzdhm29kige74n4/IMG_0081.JPG?rlkey=z3472kat96a8jqw1h54u42b3b&st=1pibzev5&raw=1" alt="Foto 73" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/0cdtb3jzdhm29kige74n4/IMG_0081.JPG?rlkey=z3472kat96a8jqw1h54u42b3b&st=1pibzev5&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/0cdtb3jzdhm29kige74n4/IMG_0081.JPG?rlkey=z3472kat96a8jqw1h54u42b3b&st=1pibzev5&raw=1" alt="Foto 73" />
     </div>
 
     <!-- Foto 74 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/4dw2zpvy001e00eut2eua/IMG_0079.JPG?rlkey=89oiorbcxjl1n4qfpt5z9enbv&st=qjfzbqkp&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/4dw2zpvy001e00eut2eua/IMG_0079.JPG?rlkey=89oiorbcxjl1n4qfpt5z9enbv&st=qjfzbqkp&raw=1" alt="Foto 74" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/4dw2zpvy001e00eut2eua/IMG_0079.JPG?rlkey=89oiorbcxjl1n4qfpt5z9enbv&st=qjfzbqkp&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/4dw2zpvy001e00eut2eua/IMG_0079.JPG?rlkey=89oiorbcxjl1n4qfpt5z9enbv&st=qjfzbqkp&raw=1" alt="Foto 74" />
     </div>
 
     <!-- Foto 75 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/h9zmv1rpntzgh889feacl/IMG_0084.JPG?rlkey=jm8ckwjcosol74bzrriqyskb1&st=5gos2b28&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/h9zmv1rpntzgh889feacl/IMG_0084.JPG?rlkey=jm8ckwjcosol74bzrriqyskb1&st=5gos2b28&raw=1" alt="Foto 75" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/h9zmv1rpntzgh889feacl/IMG_0084.JPG?rlkey=jm8ckwjcosol74bzrriqyskb1&st=5gos2b28&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/h9zmv1rpntzgh889feacl/IMG_0084.JPG?rlkey=jm8ckwjcosol74bzrriqyskb1&st=5gos2b28&raw=1" alt="Foto 75" />
     </div>
 
     <!-- Foto 76 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/air02vra8sm21412p13g6/IMG_0078.JPG?rlkey=3yr73g2of03gypva00e804a30&st=smjh9mht&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/air02vra8sm21412p13g6/IMG_0078.JPG?rlkey=3yr73g2of03gypva00e804a30&st=smjh9mht&raw=1" alt="Foto 76" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/air02vra8sm21412p13g6/IMG_0078.JPG?rlkey=3yr73g2of03gypva00e804a30&st=smjh9mht&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/air02vra8sm21412p13g6/IMG_0078.JPG?rlkey=3yr73g2of03gypva00e804a30&st=smjh9mht&raw=1" alt="Foto 76" />
     </div>
 
     <!-- Foto 77 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/4rxs8lcj4fj59jmeomdo6/IMG_0077.JPG?rlkey=3cssorzoyllt6beo7v23vr2zi&st=bzrhw0m9&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/4rxs8lcj4fj59jmeomdo6/IMG_0077.JPG?rlkey=3cssorzoyllt6beo7v23vr2zi&st=bzrhw0m9&raw=1" alt="Foto 77" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/4rxs8lcj4fj59jmeomdo6/IMG_0077.JPG?rlkey=3cssorzoyllt6beo7v23vr2zi&st=bzrhw0m9&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/4rxs8lcj4fj59jmeomdo6/IMG_0077.JPG?rlkey=3cssorzoyllt6beo7v23vr2zi&st=bzrhw0m9&raw=1" alt="Foto 77" />
     </div>
 
     <!-- Foto 78 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/9chr7x4lpqhw2aksn7cbd/IMG_0076.JPG?rlkey=uun0j4qipr9adpkoettu55fwy&st=ovotwfns&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/9chr7x4lpqhw2aksn7cbd/IMG_0076.JPG?rlkey=uun0j4qipr9adpkoettu55fwy&st=ovotwfns&raw=1" alt="Foto 78" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/9chr7x4lpqhw2aksn7cbd/IMG_0076.JPG?rlkey=uun0j4qipr9adpkoettu55fwy&st=ovotwfns&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/9chr7x4lpqhw2aksn7cbd/IMG_0076.JPG?rlkey=uun0j4qipr9adpkoettu55fwy&st=ovotwfns&raw=1" alt="Foto 78" />
     </div>
 
     <!-- Foto 79 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/gxs7zmsk55g9dt24l2b9u/IMG_0074.JPG?rlkey=mmfgdbzgxqfdtns15j5ia5dcl&st=1kjfdmwl&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/gxs7zmsk55g9dt24l2b9u/IMG_0074.JPG?rlkey=mmfgdbzgxqfdtns15j5ia5dcl&st=1kjfdmwl&raw=1" alt="Foto 79" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/gxs7zmsk55g9dt24l2b9u/IMG_0074.JPG?rlkey=mmfgdbzgxqfdtns15j5ia5dcl&st=1kjfdmwl&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/gxs7zmsk55g9dt24l2b9u/IMG_0074.JPG?rlkey=mmfgdbzgxqfdtns15j5ia5dcl&st=1kjfdmwl&raw=1" alt="Foto 79" />
     </div>
 
     <!-- Foto 80 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/jus9m2m986y9za5refug3/IMG_0075.JPG?rlkey=q56kz56a8yy7lyityr7wm7btt&st=oflj0jlo&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/jus9m2m986y9za5refug3/IMG_0075.JPG?rlkey=q56kz56a8yy7lyityr7wm7btt&st=oflj0jlo&raw=1" alt="Foto 80" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/jus9m2m986y9za5refug3/IMG_0075.JPG?rlkey=q56kz56a8yy7lyityr7wm7btt&st=oflj0jlo&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/jus9m2m986y9za5refug3/IMG_0075.JPG?rlkey=q56kz56a8yy7lyityr7wm7btt&st=oflj0jlo&raw=1" alt="Foto 80" />
     </div>
 
     <!-- Foto 81 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/smgwkcgu7jg6u7usftoyo/IMG_0071.JPG?rlkey=iab4ip7f9hdi58dxuj8qvwnil&st=aquceenp&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/smgwkcgu7jg6u7usftoyo/IMG_0071.JPG?rlkey=iab4ip7f9hdi58dxuj8qvwnil&st=aquceenp&raw=1" alt="Foto 81" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/smgwkcgu7jg6u7usftoyo/IMG_0071.JPG?rlkey=iab4ip7f9hdi58dxuj8qvwnil&st=aquceenp&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/smgwkcgu7jg6u7usftoyo/IMG_0071.JPG?rlkey=iab4ip7f9hdi58dxuj8qvwnil&st=aquceenp&raw=1" alt="Foto 81" />
     </div>
 
     <!-- Foto 82 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/wd06u8u0efdwzxyy346li/IMG_0070.JPG?rlkey=yzgwgn4we9xrcpd3jj2u9i5fn&st=lft3irz6&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/wd06u8u0efdwzxyy346li/IMG_0070.JPG?rlkey=yzgwgn4we9xrcpd3jj2u9i5fn&st=lft3irz6&raw=1" alt="Foto 82" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/wd06u8u0efdwzxyy346li/IMG_0070.JPG?rlkey=yzgwgn4we9xrcpd3jj2u9i5fn&st=lft3irz6&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/wd06u8u0efdwzxyy346li/IMG_0070.JPG?rlkey=yzgwgn4we9xrcpd3jj2u9i5fn&st=lft3irz6&raw=1" alt="Foto 82" />
     </div>
 
     <!-- Foto 83 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/mniq9roid3s63cf5in40r/IMG_0072.JPG?rlkey=vcnccgmf9ly8xek19vk3vwavh&st=pa9nsh4i&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/mniq9roid3s63cf5in40r/IMG_0072.JPG?rlkey=vcnccgmf9ly8xek19vk3vwavh&st=pa9nsh4i&raw=1" alt="Foto 83" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/mniq9roid3s63cf5in40r/IMG_0072.JPG?rlkey=vcnccgmf9ly8xek19vk3vwavh&st=pa9nsh4i&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/mniq9roid3s63cf5in40r/IMG_0072.JPG?rlkey=vcnccgmf9ly8xek19vk3vwavh&st=pa9nsh4i&raw=1" alt="Foto 83" />
     </div>
 
     <!-- Foto 84 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/dsg8n7vsglyhhjvq78inf/IMG_0073.JPG?rlkey=cv5h4mo8zirurv5180th7wcks&st=dv42g312&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/dsg8n7vsglyhhjvq78inf/IMG_0073.JPG?rlkey=cv5h4mo8zirurv5180th7wcks&st=dv42g312&raw=1" alt="Foto 84" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/dsg8n7vsglyhhjvq78inf/IMG_0073.JPG?rlkey=cv5h4mo8zirurv5180th7wcks&st=dv42g312&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/dsg8n7vsglyhhjvq78inf/IMG_0073.JPG?rlkey=cv5h4mo8zirurv5180th7wcks&st=dv42g312&raw=1" alt="Foto 84" />
     </div>
 
     <!-- Foto 85 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/pht4k46nplfanondg2hre/IMG_0068.JPG?rlkey=2z3g9av23ey1oqd5pkyp7rago&st=dn5d44r1&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/pht4k46nplfanondg2hre/IMG_0068.JPG?rlkey=2z3g9av23ey1oqd5pkyp7rago&st=dn5d44r1&raw=1" alt="Foto 85" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/pht4k46nplfanondg2hre/IMG_0068.JPG?rlkey=2z3g9av23ey1oqd5pkyp7rago&st=dn5d44r1&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/pht4k46nplfanondg2hre/IMG_0068.JPG?rlkey=2z3g9av23ey1oqd5pkyp7rago&st=dn5d44r1&raw=1" alt="Foto 85" />
     </div>
 
     <!-- Foto 86 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/7glbz4h8r8b3pplsk1lad/IMG_0069.JPG?rlkey=mxko1abm8ab72sofcrmcge4ks&st=ja1d8jor&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/7glbz4h8r8b3pplsk1lad/IMG_0069.JPG?rlkey=mxko1abm8ab72sofcrmcge4ks&st=ja1d8jor&raw=1" alt="Foto 86" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/7glbz4h8r8b3pplsk1lad/IMG_0069.JPG?rlkey=mxko1abm8ab72sofcrmcge4ks&st=ja1d8jor&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/7glbz4h8r8b3pplsk1lad/IMG_0069.JPG?rlkey=mxko1abm8ab72sofcrmcge4ks&st=ja1d8jor&raw=1" alt="Foto 86" />
     </div>
 
     <!-- Foto 87 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/a8hkl044gwcexw14o9r2k/IMG_0065.JPG?rlkey=ua41n6clf170paz9yb47ivzeo&st=po0suegs&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/a8hkl044gwcexw14o9r2k/IMG_0065.JPG?rlkey=ua41n6clf170paz9yb47ivzeo&st=po0suegs&raw=1" alt="Foto 87" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/a8hkl044gwcexw14o9r2k/IMG_0065.JPG?rlkey=ua41n6clf170paz9yb47ivzeo&st=po0suegs&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/a8hkl044gwcexw14o9r2k/IMG_0065.JPG?rlkey=ua41n6clf170paz9yb47ivzeo&st=po0suegs&raw=1" alt="Foto 87" />
     </div>
 
     <!-- Foto 88 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/oiuvabf1uolhn6d9nzh5d/IMG_0067.JPG?rlkey=mlymdmf7yty2sbe8w4bmmypo5&st=tefodm2m&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/oiuvabf1uolhn6d9nzh5d/IMG_0067.JPG?rlkey=mlymdmf7yty2sbe8w4bmmypo5&st=tefodm2m&raw=1" alt="Foto 88" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/oiuvabf1uolhn6d9nzh5d/IMG_0067.JPG?rlkey=mlymdmf7yty2sbe8w4bmmypo5&st=tefodm2m&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/oiuvabf1uolhn6d9nzh5d/IMG_0067.JPG?rlkey=mlymdmf7yty2sbe8w4bmmypo5&st=tefodm2m&raw=1" alt="Foto 88" />
     </div>
 
     <!-- Foto 89 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/f51y5ipftuxedj92hb8cj/IMG_0066.JPG?rlkey=nzqn2m75yov42bt0ley7hehhz&st=mc8kpc2l&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/f51y5ipftuxedj92hb8cj/IMG_0066.JPG?rlkey=nzqn2m75yov42bt0ley7hehhz&st=mc8kpc2l&raw=1" alt="Foto 89" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/f51y5ipftuxedj92hb8cj/IMG_0066.JPG?rlkey=nzqn2m75yov42bt0ley7hehhz&st=mc8kpc2l&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/f51y5ipftuxedj92hb8cj/IMG_0066.JPG?rlkey=nzqn2m75yov42bt0ley7hehhz&st=mc8kpc2l&raw=1" alt="Foto 89" />
     </div>
 
     <!-- Foto 90 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/cbf1q4deen3wlfkbte8cy/IMG_0064.JPG?rlkey=2zgnhdwn3n2ea01ryb3y0bhxi&st=7osvc0o0&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/cbf1q4deen3wlfkbte8cy/IMG_0064.JPG?rlkey=2zgnhdwn3n2ea01ryb3y0bhxi&st=7osvc0o0&raw=1" alt="Foto 90" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/cbf1q4deen3wlfkbte8cy/IMG_0064.JPG?rlkey=2zgnhdwn3n2ea01ryb3y0bhxi&st=7osvc0o0&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/cbf1q4deen3wlfkbte8cy/IMG_0064.JPG?rlkey=2zgnhdwn3n2ea01ryb3y0bhxi&st=7osvc0o0&raw=1" alt="Foto 90" />
     </div>
 
     <!-- Foto 91 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/53gvn1ugdfxhw2g9pvrlf/IMG_0062.JPG?rlkey=u58pe59rfi4vb9zn35qwlcvcw&st=qaelxu08&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/53gvn1ugdfxhw2g9pvrlf/IMG_0062.JPG?rlkey=u58pe59rfi4vb9zn35qwlcvcw&st=qaelxu08&raw=1" alt="Foto 91" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/53gvn1ugdfxhw2g9pvrlf/IMG_0062.JPG?rlkey=u58pe59rfi4vb9zn35qwlcvcw&st=qaelxu08&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/53gvn1ugdfxhw2g9pvrlf/IMG_0062.JPG?rlkey=u58pe59rfi4vb9zn35qwlcvcw&st=qaelxu08&raw=1" alt="Foto 91" />
     </div>
 
     <!-- Foto 92 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/flp6jm32tss8taf4jnz8c/IMG_0063.JPG?rlkey=3s0o0692m5zc25vv99fgzuwbf&st=gsrxlzcr&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/flp6jm32tss8taf4jnz8c/IMG_0063.JPG?rlkey=3s0o0692m5zc25vv99fgzuwbf&st=gsrxlzcr&raw=1" alt="Foto 92" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/flp6jm32tss8taf4jnz8c/IMG_0063.JPG?rlkey=3s0o0692m5zc25vv99fgzuwbf&st=gsrxlzcr&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/flp6jm32tss8taf4jnz8c/IMG_0063.JPG?rlkey=3s0o0692m5zc25vv99fgzuwbf&st=gsrxlzcr&raw=1" alt="Foto 92" />
     </div>
 
     <!-- Foto 93 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/jskn3xn8b7xlm0rdl2cdh/IMG_0061.JPG?rlkey=1ldsjr9kpmxca44nh5zgmtf4c&st=xtb84l1f&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/jskn3xn8b7xlm0rdl2cdh/IMG_0061.JPG?rlkey=1ldsjr9kpmxca44nh5zgmtf4c&st=xtb84l1f&raw=1" alt="Foto 93" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/jskn3xn8b7xlm0rdl2cdh/IMG_0061.JPG?rlkey=1ldsjr9kpmxca44nh5zgmtf4c&st=xtb84l1f&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/jskn3xn8b7xlm0rdl2cdh/IMG_0061.JPG?rlkey=1ldsjr9kpmxca44nh5zgmtf4c&st=xtb84l1f&raw=1" alt="Foto 93" />
     </div>
 
     <!-- Foto 94 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/i9qp1rbg6gkj7pmzmvc6z/IMG_0060.JPG?rlkey=tgc500rcyrfg1jq53oznzbgf3&st=3c6hb0yr&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/i9qp1rbg6gkj7pmzmvc6z/IMG_0060.JPG?rlkey=tgc500rcyrfg1jq53oznzbgf3&st=3c6hb0yr&raw=1" alt="Foto 94" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/i9qp1rbg6gkj7pmzmvc6z/IMG_0060.JPG?rlkey=tgc500rcyrfg1jq53oznzbgf3&st=3c6hb0yr&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/i9qp1rbg6gkj7pmzmvc6z/IMG_0060.JPG?rlkey=tgc500rcyrfg1jq53oznzbgf3&st=3c6hb0yr&raw=1" alt="Foto 94" />
     </div>
 
     <!-- Foto 95 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/cpo6k99m6weg9j2mw7mhw/IMG_0058.JPG?rlkey=lyxenci5gg2wz2cz6twvmsk9i&st=h5ajm726&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/cpo6k99m6weg9j2mw7mhw/IMG_0058.JPG?rlkey=lyxenci5gg2wz2cz6twvmsk9i&st=h5ajm726&raw=1" alt="Foto 95" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/cpo6k99m6weg9j2mw7mhw/IMG_0058.JPG?rlkey=lyxenci5gg2wz2cz6twvmsk9i&st=h5ajm726&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/cpo6k99m6weg9j2mw7mhw/IMG_0058.JPG?rlkey=lyxenci5gg2wz2cz6twvmsk9i&st=h5ajm726&raw=1" alt="Foto 95" />
     </div>
 
     <!-- Foto 96 -->
-    <div class="photo-card">
-      <a href="https://www.dropbox.com/scl/fi/ec1470am2h470d7oczl4l/IMG_0059.JPG?rlkey=5hbrjnxvnp5w2c6wxpheq4v9v&st=15rd6pxk&raw=1" target="_blank">
-        <img src="https://www.dropbox.com/scl/fi/ec1470am2h470d7oczl4l/IMG_0059.JPG?rlkey=5hbrjnxvnp5w2c6wxpheq4v9v&st=15rd6pxk&raw=1" alt="Foto 96" />
-      </a>
+    <div class="photo-card" data-full="https://www.dropbox.com/scl/fi/ec1470am2h470d7oczl4l/IMG_0059.JPG?rlkey=5hbrjnxvnp5w2c6wxpheq4v9v&st=15rd6pxk&raw=1">
+      <img src="https://www.dropbox.com/scl/fi/ec1470am2h470d7oczl4l/IMG_0059.JPG?rlkey=5hbrjnxvnp5w2c6wxpheq4v9v&st=15rd6pxk&raw=1" alt="Foto 96" />
     </div>
+  </div> <!-- Cierra .gallery -->
 
+  <!-- Lightbox Overlay -->
+  <div id="lightbox-overlay">
+    <div class="close-btn">&times;</div>
+    <img src="" alt="Imagen ampliada" />
   </div>
 
   <footer>
     <p>Desarrollado con ❤ para tu Galería Perrísima</p>
   </footer>
 
+  <script>
+    // 1) Tomamos todos los .photo-card
+    const cards = document.querySelectorAll('.photo-card');
+    // 2) Referencia al overlay y la <img> dentro de él
+    const overlay = document.getElementById('lightbox-overlay');
+    const overlayImg = overlay.querySelector('img');
+    const closeBtn = overlay.querySelector('.close-btn');
+
+    // Cada tarjeta tiene un atributo data-full con la URL de la imagen en grande
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const fullUrl = card.getAttribute('data-full');
+        // Poner la URL en el <img> del overlay y mostrarlo
+        overlayImg.src = fullUrl;
+        overlay.style.display = 'flex';
+      });
+    });
+
+    // Cerrar el overlay si clickeamos la X o tocamos fuera de la imagen
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+      overlayImg.src = '';
+    });
+    // Si damos click en cualquier parte del overlay y NO sea la imagen, cerramos:
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+        overlayImg.src = '';
+      }
+    });
+
+    // Para evitar que el clic en la imagen dentro del overlay propague y cierre:
+    overlayImg.addEventListener('click', e => {
+      e.stopPropagation();
+    });
+  </script>
 </body>
 </html>
